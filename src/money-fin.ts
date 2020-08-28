@@ -26,16 +26,6 @@ export class MoneyFin extends LitElement {
 
   init(): void {
     dragElement(this);
-    this.initPosition();
-  }
-
-  initPosition(): void {
-    if (!window.localStorage) {
-      return;
-    }
-
-    this.style.top = localStorage.getItem(`money-fin-position-top`) || `0px`;
-    this.style.left = localStorage.getItem(`money-fin-position-left`) || `0px`;
   }
 }
 
