@@ -1,3 +1,5 @@
+import { saveLocalStorage } from './saveLocalStorage';
+
 export function dragElement(elmnt: HTMLElement): void {
   let pos1 = 0,
     pos2 = 0,
@@ -33,5 +35,7 @@ export function dragElement(elmnt: HTMLElement): void {
   function closeDragElement() {
     document.onmouseup = null;
     document.onmousemove = null;
+
+    saveLocalStorage(elmnt.style.top, elmnt.style.left);
   }
 }
