@@ -1,0 +1,63 @@
+{
+  "scripts": {
+    "lint:eslint": "eslint --ext .ts,.html . --ignore-path .gitignore",
+    "format:eslint": "eslint --ext .ts,.html . --fix --ignore-path .gitignore",
+    "lint:prettier": "prettier \"**/*.js\" \"**/*.ts\" --check --ignore-path .gitignore",
+    "format:prettier": "prettier \"**/*.js\" \"**/*.ts\" --write --ignore-path .gitignore",
+    "lint": "npm run lint:eslint && npm run lint:prettier",
+    "format": "npm run format:eslint && npm run format:prettier",
+    "build": "rimraf dist && tsc && rollup -c rollup.config.js",
+    "start:build": "npm run build && es-dev-server --root-dir dist --app-index index.html --open --compatibility none --port 9384",
+    "start": "concurrently --kill-others --names tsc,es-dev-server \"npm run tsc:watch\" \"es-dev-server --app-index index.html --node-resolve --open --watch --port 9383\"",
+    "tsc:watch": "tsc --watch"
+  },
+  "devDependencies": {
+    "eslint": "^7.7.0",
+    "@open-wc/eslint-config": "^3.0.0",
+    "@typescript-eslint/eslint-plugin": "^3.10.1",
+    "@typescript-eslint/parser": "^3.10.1",
+    "prettier": "^2.1.1",
+    "eslint-config-prettier": "^6.11.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.13",
+    "@open-wc/building-rollup": "^1.8.0",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.26.6",
+    "@types/node": "14.6.1",
+    "es-dev-server": "^1.57.4",
+    "typescript": "~4.0.2",
+    "concurrently": "^5.3.0",
+    "tslib": "^2.0.1"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@open-wc/eslint-config",
+      "eslint-config-prettier"
+    ]
+  },
+  "prettier": {
+    "singleQuote": true,
+    "arrowParens": "avoid"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "name": "money-fin-component",
+  "version": "0.0.0",
+  "description": "Webcomponent money-fin-component following open-wc recommendations",
+  "author": "money-fin-component",
+  "license": "MIT",
+  "dependencies": {
+    "lit-html": "^1.3.0",
+    "lit-element": "^2.4.0"
+  }
+}
