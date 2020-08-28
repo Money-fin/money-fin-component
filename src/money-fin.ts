@@ -1,11 +1,14 @@
-import { LitElement, html, TemplateResult } from 'lit-element';
-import { query } from 'lit-element/lib/decorators.js';
+import { LitElement, html, TemplateResult, eventOptions } from 'lit-element';
+import { query, property } from 'lit-element/lib/decorators.js';
 import style from './money-fin.style';
 import fabStyle from './style/fab.style';
 import { IconClose, IconSubmit } from './icons/icons';
 
 export class MoneyFin extends LitElement {
   static styles = [fabStyle, style];
+
+  @property({ type: String })
+  inputText = ``;
 
   @query(`#fabCheckbox`)
   fabCheckBox;
@@ -32,16 +35,40 @@ export class MoneyFin extends LitElement {
               class="chat-input"
               type="text"
               placeholder="Write a message..."
+              .value="${this.inputText}"
+              @keydown=${this.enterInput}
             />
-            <button class="chat-submit">${IconSubmit}</button>
+            <button class="chat-submit" @click=${this.cleanMessage}>
+              ${IconSubmit}
+            </button>
           </div>
         </div>
       </div>
     `;
   }
 
+  @eventOptions({ capture: true })
+  enterInput(event: KeyboardEvent): void {
+    const isEnter = event.keyCode === 13;
+    const { currentTarget } = event;
+
+    this.inputText = (currentTarget as HTMLInputElement).value;
+
+    if (isEnter) {
+      this.cleanMessage();
+    }
+  }
+
   close(): void {
     this.fabCheckBox.checked = !this.fabCheckBox.checked;
+  }
+
+  submit(): void {
+    this.cleanMessage();
+  }
+
+  cleanMessage(): void {
+    this.inputText = ``;
   }
 }
 
