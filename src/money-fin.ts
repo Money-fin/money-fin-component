@@ -1,7 +1,6 @@
 import { LitElement, html, TemplateResult } from 'lit-element';
 import style from './money-fin.style';
 import fabStyle from './style/fab.style';
-import { dragElement } from './utils/draggable';
 
 export class MoneyFin extends LitElement {
   static styles = [fabStyle, style];
@@ -18,14 +17,6 @@ export class MoneyFin extends LitElement {
         <div class="fab-wheel">Test</div>
       </div>
     `;
-  }
-
-  protected firstUpdated(): void {
-    this.init();
-  }
-
-  init(): void {
-    dragElement(this);
   }
 }
 
