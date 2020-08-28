@@ -1,8 +1,15 @@
-import { LitElement, html, TemplateResult, eventOptions } from 'lit-element';
-import { query, property } from 'lit-element/lib/decorators.js';
+import {
+  LitElement,
+  html,
+  TemplateResult,
+  eventOptions,
+  property,
+} from 'lit-element';
+import { query } from 'lit-element/lib/decorators.js';
 import style from './money-fin.style';
 import fabStyle from './style/fab.style';
 import { IconClose, IconSubmit } from './icons/icons';
+import './components/chat-message';
 
 export class MoneyFin extends LitElement {
   static styles = [fabStyle, style];
@@ -28,7 +35,9 @@ export class MoneyFin extends LitElement {
             ${IconClose}
           </div>
 
-          <div class="chat-body"></div>
+          <div class="chat-body">
+            <chat-message></chat-message>
+          </div>
 
           <div class="chat-footer">
             <input

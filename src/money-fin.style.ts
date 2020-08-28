@@ -20,7 +20,7 @@ export default css`
     right: 20px;
     bottom: 100px;
     height: 80vh;
-    width: 300px;
+    width: 400px;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.35);
 
     display: grid;
@@ -53,6 +53,10 @@ export default css`
     color: #fff;
     position: absolute;
     right: 20px;
+  }
+
+  .chat-body {
+    padding: 40px 20px 20px;
   }
 
   .chat-footer {
