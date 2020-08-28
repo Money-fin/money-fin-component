@@ -57,7 +57,7 @@
   "author": "money-fin-component",
   "license": "MIT",
   "dependencies": {
-    "lit-html": "^1.3.0",
-    "lit-element": "^2.4.0"
+    "lit-element": "^2.4.0",
+    "lit-html": "^1.3.0"
   }
 }
