@@ -56,7 +56,6 @@ export default css`
     transform: translateX(0%) translateY(-50%) rotate(0deg);
     opacity: 1;
     animation: blink 3s ease infinite;
-    transition: all 0.3s ease;
   }
 
   .fab-dots-1 {
