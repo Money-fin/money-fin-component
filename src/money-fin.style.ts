@@ -57,6 +57,7 @@ export default css`
 
   .chat-body {
     padding: 40px 20px 20px;
+    overflow-y: scroll;
   }
 
   .chat-footer {

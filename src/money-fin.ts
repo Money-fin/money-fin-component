@@ -10,6 +10,7 @@ import style from './money-fin.style';
 import fabStyle from './style/fab.style';
 import { IconClose, IconSubmit } from './icons/icons';
 import './components/chat-message';
+import { ChatMessage } from './components/chat-message';
 
 export class MoneyFin extends LitElement {
   static styles = [fabStyle, style];
@@ -17,8 +18,14 @@ export class MoneyFin extends LitElement {
   @property({ type: String })
   inputText = ``;
 
+  @property({ type: Array })
+  chatList: ChatMessage[] = [];
+
   @query(`#fabCheckbox`)
   fabCheckBox;
+
+  @query(`.chat-body`)
+  chatBody;
 
   render(): TemplateResult {
     return html`
@@ -36,7 +43,15 @@ export class MoneyFin extends LitElement {
           </div>
 
           <div class="chat-body">
-            <chat-message></chat-message>
+            <chat-message who="BOT" message="Hello"></chat-message>
+            ${this.chatList.map(
+              (message: ChatMessage) => html`
+                <chat-message
+                  who="${message.who || `BOT`}"
+                  message="${message.message || ``}"
+                ></chat-message>
+              `
+            )}
           </div>
 
           <div class="chat-footer">
@@ -47,7 +62,7 @@ export class MoneyFin extends LitElement {
               .value="${this.inputText}"
               @keydown=${this.enterInput}
             />
-            <button class="chat-submit" @click=${this.cleanMessage}>
+            <button class="chat-submit" @click=${this.submit}>
               ${IconSubmit}
             </button>
           </div>
@@ -64,7 +79,7 @@ export class MoneyFin extends LitElement {
     this.inputText = (currentTarget as HTMLInputElement).value;
 
     if (isEnter) {
-      this.cleanMessage();
+      this.submit();
     }
   }
 
@@ -73,7 +88,28 @@ export class MoneyFin extends LitElement {
   }
 
   submit(): void {
+    this.chat(`ME`, this.inputText);
     this.cleanMessage();
+  }
+
+  async chat(who: `BOT` | `ME`, message: string): Promise<void> {
+    const isBlankText = !message.trim().length;
+
+    if (isBlankText) {
+      return;
+    }
+
+    this.chatList.push({
+      who,
+      message,
+    } as ChatMessage);
+    await this.updateComplete;
+    this.scrollDown();
+  }
+
+  scrollDown(): void {
+    (this.chatBody as HTMLElement).scrollTop = (this
+      .chatBody as HTMLElement).scrollHeight;
   }
 
   cleanMessage(): void {

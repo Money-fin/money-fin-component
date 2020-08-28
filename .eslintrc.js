@@ -17,5 +17,6 @@ module.exports = {
     'import/no-unresolved': 'off',
     'import/extensions': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
+    'import/no-duplicates': 'off'
   },
 };

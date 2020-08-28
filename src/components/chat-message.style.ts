@@ -3,14 +3,19 @@ import { css } from 'lit-element';
 export default css`
   :host {
     display: block;
+    min-height: 65px;
   }
 
   .wrap {
     list-style: none;
     box-sizing: border-box;
-    margin-bottom: 20px;
     display: inline-flex;
     align-items: flex-start;
+  }
+
+  .wrap.me {
+    align-items: flex-start;
+    float: right;
   }
 
   .profile {
@@ -33,6 +38,12 @@ export default css`
     border-right: 6px solid rgb(44, 135, 232);
   }
 
+  .chat-message__arrow--right {
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-left: 6px solid #f0f0f0;
+  }
+
   .chat-message {
     font-size: 16px;
     list-style: none;
@@ -46,5 +57,18 @@ export default css`
     background-color: rgb(44, 135, 232);
     color: #fff;
     margin-right: 30px;
+  }
+
+  .chat-message.me {
+    background-color: #fff;
+    border: 1px solid #f0f0f0;
+    color: #000;
+
+    margin-bottom: 20px;
+    margin-left: 30px;
+    margin-right: 0;
+    text-align: right;
+    display: inline-flex;
+    align-self: flex-end;
   }
 `;
