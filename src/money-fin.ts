@@ -1,12 +1,16 @@
 import { LitElement, html, css, property, TemplateResult } from 'lit-element';
 
+import { dragElement } from './utils/draggable';
+
 export class MoneyFin extends LitElement {
   @property({ type: String }) page = 'main';
 
-  static styles = css``;
+  protected firstUpdated(): void {
+    this.init();
+  }
 
-  render(): TemplateResult {
-    return html` <main>Test</main> `;
+  init(): void {
+    dragElement(this);
   }
 }
 
