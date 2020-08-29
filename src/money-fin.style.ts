@@ -91,4 +91,8 @@ export default css`
   .chat-submit:hover {
     color: #333a;
   }
+
+  .clickable {
+    cursor: pointer;
+  }
 `;

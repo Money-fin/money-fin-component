@@ -31,7 +31,7 @@ export class MoneyFin extends LitElement {
     return html`
       <div class="fab-wrapper">
         <input id="fabCheckbox" type="checkbox" class="fab-checkbox" />
-        <label class="fab" for="fabCheckbox">
+        <label class="fab clickable" for="fabCheckbox">
           <span class="fab-dots fab-dots-1"></span>
           <span class="fab-dots fab-dots-2"></span>
           <span class="fab-dots fab-dots-3"></span>
