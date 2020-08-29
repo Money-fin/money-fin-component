@@ -2,6 +2,10 @@
 
 ![Aug-29-2020 17-06-54](https://i.loli.net/2020/08/29/RsTMLzdWbaSXgKZ.gif)
 
+## DEMO
+
+http://34.64.78.97:9383/
+
 ## Quickstart
 
 1. Just Input script
