@@ -24,14 +24,13 @@ demo.html
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
   <title>money-fin-component demo</title>
 </head>
 
 <body>
   <money-fin></money-fin>
 
-  <script type="module" src="./money-fin.min.js"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/gh//Money-fin/money-fin-component/cdn/money-fin.min.js"></script>
 </body>
 
 </html>
