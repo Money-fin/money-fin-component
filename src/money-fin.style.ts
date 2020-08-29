@@ -14,6 +14,11 @@ export default css`
     right: 45px;
   }
 
+  .chatbot-header {
+    font-family: auto;
+    font-weight: 300;
+  }
+
   .chat-wrap {
     box-sizing: border-box;
     position: fixed;
@@ -73,7 +78,8 @@ export default css`
     height: 100%;
     font-size: 16px;
     padding: 0 20px;
-    font-weight: normal;
+    font-family: auto;
+    font-weight: 300;
     outline: none;
   }
 

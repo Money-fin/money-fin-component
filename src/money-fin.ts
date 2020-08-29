@@ -44,12 +44,15 @@ export class MoneyFin extends LitElement {
         </label>
         <div class="fab-wheel chat-wrap">
           <div class="chat-header" @click=${this.close}>
-            <h1>Monery Fin Bot</h1>
+            <h1 class="chatbot-header">Monery Fin Bot</h1>
             ${IconClose}
           </div>
 
           <div class="chat-body">
-            <chat-message who="BOT" message="Hello"></chat-message>
+            <chat-message
+              who="BOT"
+              message="실시간으로 뉴스 종목을 분석하여 보내드려요."
+            ></chat-message>
             ${this.chatList.map((message: IChatList) =>
               this.chatMessageTemplaet(message)
             )}
@@ -154,10 +157,15 @@ export class MoneyFin extends LitElement {
   }
 
   connectWebsocket(): void {
-    const websocket = new WebSocket('ws://34.64.78.97:9385/');
+    const websocket = new WebSocket('ws://34.64.78.97:9998/');
 
     websocket.onmessage = function (event) {
       console.log(event.data);
+    };
+
+    websocket.onerror = () => {
+      const TEN_SEC = 1000 * 10;
+      setTimeout(this.connectWebsocket, TEN_SEC);
     };
 
     // websocket.onopen = function () {

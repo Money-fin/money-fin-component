@@ -47,6 +47,7 @@ export default css`
   .chat-message {
     font-size: 16px;
     list-style: none;
+    font-weight: 300;
     box-sizing: border-box;
     display: inline-block;
     padding: 12px 20px;
