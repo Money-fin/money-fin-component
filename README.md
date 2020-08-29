@@ -10,3 +10,4 @@
 npm i @money-fin/money-fin-component
 ```
 
+![Aug-29-2020 17-06-54](https://i.loli.net/2020/08/29/RsTMLzdWbaSXgKZ.gif)
