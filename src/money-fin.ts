@@ -22,10 +22,10 @@ export class MoneyFin extends LitElement {
   chatList: ChatMessage[] = [];
 
   @query(`#fabCheckbox`)
-  fabCheckBox;
+  fabCheckBox: any;
 
   @query(`.chat-body`)
-  chatBody;
+  chatBody: any;
 
   render(): TemplateResult {
     return html`

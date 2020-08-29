@@ -4,7 +4,7 @@
     "format:eslint": "eslint --ext .ts,.html . --fix --ignore-path .gitignore",
     "lint:prettier": "prettier \"**/*.js\" \"**/*.ts\" --check --ignore-path .gitignore",
     "format:prettier": "prettier \"**/*.js\" \"**/*.ts\" --write --ignore-path .gitignore",
-    "lint": "npm run lint:eslint && npm run lint:prettier",
+    "lint": "npm run lint:eslint",
     "format": "npm run format:eslint && npm run format:prettier",
     "build": "rimraf dist && tsc && rollup -c rollup.config.js",
     "start:build": "npm run build && es-dev-server --root-dir dist --app-index index.html --open --compatibility none --port 9384",
@@ -51,13 +51,27 @@
       "git add"
     ]
   },
-  "name": "money-fin-component",
-  "version": "0.0.0",
-  "description": "Webcomponent money-fin-component following open-wc recommendations",
-  "author": "money-fin-component",
+  "name": "@money-fin/money-fin-component",
+  "version": "0.0.3",
+  "private": false,
+  "description": "Webcomponent money-fin-component",
+  "main": "./out-tsc/src/money-fin.js",
+  "module": "./out-tsc/src/money-fin.js",
+  "author": "taeuk-gang",
   "license": "MIT",
   "dependencies": {
     "lit-element": "^2.4.0",
     "lit-html": "^1.3.0"
+  },
+  "keywords": [
+    "webcomponent"
+  ],
+  "homepage": "https://github.com/Money-fin/money-fin-component",
+  "bugs": {
+    "url": "https://github.com/Money-fin/money-fin-component/issues",
+    "email": "taeuk_kang@naver.com"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
