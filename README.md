@@ -6,7 +6,7 @@
 
 http://34.64.78.97:9383/
 
-## Quickstart
+## Usage - Quick Start
 
 1. Just Input script
 
@@ -17,7 +17,7 @@ http://34.64.78.97:9383/
 2. Use WebComponent
 
 ```html
-  <money-fin></money-fin>
+<money-fin></money-fin>
 ```
 
 ## Example
