@@ -10,7 +10,13 @@ import style from './money-fin.style';
 import fabStyle from './style/fab.style';
 import { IconClose, IconSubmit } from './icons/icons';
 import './components/chat-message';
-import { ChatMessage } from './components/chat-message';
+import './components/news-message';
+
+export interface IChatList {
+  who: `BOT` | `ME`;
+  message: string;
+  type: `CHAT` | `NEWS`;
+}
 
 export class MoneyFin extends LitElement {
   static styles = [fabStyle, style];
@@ -19,7 +25,7 @@ export class MoneyFin extends LitElement {
   inputText = ``;
 
   @property({ type: Array })
-  chatList: ChatMessage[] = [];
+  chatList: IChatList[] = [];
 
   @query(`#fabCheckbox`)
   fabCheckBox: any;
@@ -44,13 +50,8 @@ export class MoneyFin extends LitElement {
 
           <div class="chat-body">
             <chat-message who="BOT" message="Hello"></chat-message>
-            ${this.chatList.map(
-              (message: ChatMessage) => html`
-                <chat-message
-                  who="${message.who || `BOT`}"
-                  message="${message.message || ``}"
-                ></chat-message>
-              `
+            ${this.chatList.map((message: IChatList) =>
+              this.chatMessageTemplaet(message)
             )}
           </div>
 
@@ -68,6 +69,26 @@ export class MoneyFin extends LitElement {
           </div>
         </div>
       </div>
+    `;
+  }
+
+  chatMessageTemplaet(message: IChatList): TemplateResult {
+    const isBlankText = !message.message.trim().length;
+    const isNewsMessage = message.type === `NEWS`;
+
+    if (isNewsMessage) {
+      return html` <news-message></news-message> `;
+    }
+
+    if (isBlankText) {
+      return html``;
+    }
+
+    return html`
+      <chat-message
+        who="${message.who || `BOT`}"
+        message="${message.message || ``}"
+      ></chat-message>
     `;
   }
 
@@ -89,7 +110,6 @@ export class MoneyFin extends LitElement {
 
   submit(): void {
     this.chat(`ME`, this.inputText);
-    this.cleanMessage();
   }
 
   async chat(who: `BOT` | `ME`, message: string): Promise<void> {
@@ -102,7 +122,20 @@ export class MoneyFin extends LitElement {
     this.chatList.push({
       who,
       message,
-    } as ChatMessage);
+      type: `CHAT`,
+    });
+    await this.updateComplete;
+    this.cleanMessage();
+    this.scrollDown();
+  }
+
+  async pushNews(): Promise<void> {
+    this.chatList.push({
+      who: `BOT`,
+      message: ``,
+      type: `NEWS`,
+    });
+    await this.requestUpdate();
     await this.updateComplete;
     this.scrollDown();
   }
@@ -114,6 +147,22 @@ export class MoneyFin extends LitElement {
 
   cleanMessage(): void {
     this.inputText = ``;
+  }
+
+  firstUpdated(): void {
+    this.connectWebsocket();
+  }
+
+  connectWebsocket(): void {
+    const websocket = new WebSocket('ws://34.64.78.97:9385/');
+
+    websocket.onmessage = function (event) {
+      console.log(event.data);
+    };
+
+    // websocket.onopen = function () {
+    //   websocket.send(`test`);
+    // };
   }
 }
 

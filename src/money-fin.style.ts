@@ -20,7 +20,7 @@ export default css`
     right: 20px;
     bottom: 100px;
     height: 80vh;
-    width: 400px;
+    width: 500px;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.35);
 
     display: grid;
